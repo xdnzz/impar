@@ -31,7 +31,7 @@ export function MainContentPage() {
           <span className="text-darkPurple text-[32px]">
             Resultado de busca
           </span>
-          <Button name="Novo Carda" loadMoreCards={() => openAndCloseSideModal()}/>
+          <Button name="Novo Card" loadMoreCards={() => openAndCloseSideModal()}/>
         </div>
 
         <div className="flex flex-wrap justify-center pt-2">
