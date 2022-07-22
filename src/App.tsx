@@ -4,7 +4,7 @@ import {MainContentPage} from './pages/MainContentPage';
 function App() {
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center">
+    <div className="w-full flex flex-col justify-center items-center">
       <Header/>
       <MainContentPage/>
     </div>
