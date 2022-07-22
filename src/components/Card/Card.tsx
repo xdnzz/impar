@@ -8,7 +8,7 @@ export function Card({name, image}: ICards) {
             <div className="border rounded-t-md bg-white h-44 flex flex-col justify-center items-center shadow-md">
                 <div className="w-52 flex flex-col justify-center items-center">
                     <img src={image} className="h-20" />
-                    <div className="h-[1px] bg-slate-200 w-[140px] my-2 mx-auto"> </div>
+                    <div className="h-[1px] bg-slate-200 w-[140px] my-2 mx-auto"/>
                     <span className="font-medium text-gray-600 py-2">{name}</span>
                 </div>
             </div>

@@ -1,10 +1,10 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
-import {ISideModal} from '../../@types/Types';
+import { ISideModal } from '../../@types/Types';
+import create from '../../assets/create.svg';
+import { Button } from '../Button/Button';
 
-export function SideModal({valueSideModal, setValueSideModal}: ISideModal) {
+export function SideModal({ valueSideModal, setValueSideModal }: ISideModal) {
 
   return (
     <Transition.Root show={valueSideModal} as={Fragment}>
@@ -49,21 +49,43 @@ export function SideModal({valueSideModal, setValueSideModal}: ISideModal) {
                         className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
                         onClick={() => setValueSideModal(false)}
                       >
-                        <span className="sr-only">Close panel</span>
-                        <XIcon className="h-6 w-6" aria-hidden="true" />
+                        {/* <span className="sr-only">Close panel</span> */}
+                        {/* <XIcon className="h-6 w-6" aria-hidden="true" /> */}
                       </button>
                     </div>
                   </Transition.Child>
                   <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                     <div className="px-4 sm:px-6">
-                      <Dialog.Title className="text-lg font-medium text-gray-900"> Adicionar novo card </Dialog.Title>
+                      <Dialog.Title className="text-lg font-medium text-gray-900">
+                        <div className="flex w-38 flex-col">
+                          <div className="flex items-center ">
+                            <img src={create} alt="create new card" />
+                            <span className="text-2xl pl-4">Criar card</span>
+                          </div>
+                          <div className="h-[1px] bg-slate-200 w-96 my-5 mx-auto"/>
+                        </div>
+                      </Dialog.Title>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      <h1>MEU CONTEÚDO</h1>
+                      <div className="flex flex-col">
+                        <span>DIGITE UM NOME PARA O CARD</span>
+                        <input type="text" className="border-solid border-2 p-2 rounded-md" />
+
+                        <span className="pt-8">INCLUA UMA IMAGEM PARA APARECER NO CARD</span>
+                        <input type="text" className="border-solid border-2 p-2 rounded-md" />
+                        <input type="file" className="border-solid border-2 p-2 rounded-md" />
+                        {/* <button className="border-2  border-btnOrangeColor p-1 text-btnOrangeColor mt-32 ml-[235px] rounded-md w-36 absolute bg-white cursor-pointer">Escolher arquivo</button> */}
+                        <div className="h-[1px] bg-slate-200 w-96 my-5 mx-auto"/>
+                        <Button name="Criar card"/>
+                      <div className="flex flex-col align-center items-center w-52 mx-auto">
+                        <span>Funcionalidade em desenvolvimento!</span>
+                      <img src="https://i.pinimg.com/originals/fe/61/dc/fe61dc2b7ef08a538b906eced7fa5cb5.gif"/>
+
+                      </div>
+                      </div>
                       <div className="absolute inset-0 px-4 sm:px-6">
                         <div className="h-full  border-gray-200" aria-hidden="true" />
                       </div>
-                      {/* /End replace */}
                     </div>
                   </div>
                 </Dialog.Panel>
