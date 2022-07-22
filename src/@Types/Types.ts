@@ -3,6 +3,7 @@ export interface ICards {
     url?: string;
     image? : string;
     sprites?: any
+    handleDeleteCard: ()=>void;
 }
 
 export interface IButton {
