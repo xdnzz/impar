@@ -2,35 +2,24 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 
+
 interface IModal {
-    modalOpenState: boolean;
-    callModalOpenFunction: ()=>void;
+  modalOpenState: boolean;
+  callModalOpenFunction: () => void;
 
 }
 
 
-export function Modal({modalOpenState, callModalOpenFunction}:IModal) {
+export function Modal({ modalOpenState, callModalOpenFunction }: IModal) {
   let [isOpen, setIsOpen] = useState(true)
 
   function closeModal() {
     setIsOpen(false)
   }
 
-  function openModal() {
-    setIsOpen(true)
-  }
-
   return (
     <>
-      {/* <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
-      </div> */}
+
 
       <Transition appear show={modalOpenState} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -63,10 +52,19 @@ export function Modal({modalOpenState, callModalOpenFunction}:IModal) {
                     className="text-lg font-medium leading-6 text-gray-900 "
                   >
                   </Dialog.Title>
-                  <div className="mt-2 w-[438px] h-[434px] bg-white mt-10">
-                    <p className="text-sm text-gray-500">
-                     
-                    </p>
+                  <div className=" w-[438px] h-[434px] bg-white mt-10 flex items-center justify-center flex-col">
+                    <div className="w-44 h-44 rounded-[100%] mt-5  bg-bgLightPink border-[6px] flex flex-col justify-center items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-[100px] w-[100px] text-btnError" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </div>
+                    <span className="text-3xl font-medium text-btnError mt-5">Excluir</span>
+                    <span>Certeza que deseja excluir?</span>
+                    <div className="h-[1px] bg-slate-200 w-72 my-2 mx-auto my-5" />
+                    <div>
+                      <button className="text-white bg-btnError py-2 px-9 rounded rounded-md m-3">Excluir</button>
+                      <button className="text-btnError bg-white border-btnError border py-2 px-9 rounded rounded-md m-3">Cancelar</button>
+                    </div>
                   </div>
 
                   <div className="mt-4">
