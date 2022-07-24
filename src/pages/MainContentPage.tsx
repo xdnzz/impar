@@ -1,6 +1,5 @@
 import { Button } from "../components/Button/Button";
 import { Card } from "../components/Card/Card";
-import { usePkmData } from "../hooks/usePkm";
 import { SideModal } from '../components/SideModal/SideModal';
 import { useState, useContext } from "react";
 import { ICards } from '../@types/Types';
@@ -18,7 +17,7 @@ export function MainContentPage() {
 
   const [modal, setModal] = useState(false);
 
-  
+
 
   function openAndCloseSideModal() {
     setOpenSideModalState(content => !content)
@@ -28,7 +27,7 @@ export function MainContentPage() {
     setModal(!modal)
 
   }
-
+  console.log(pkmData.length)
   return (
     <main className="w-full flex flex-col items-center ">
       <SideModal valueSideModal={openSideModalState} setValueSideModal={setOpenSideModalState} />
@@ -40,11 +39,21 @@ export function MainContentPage() {
           </span>
           <Button name="Novo Card" loadMoreCards={() => openAndCloseSideModal()} />
         </div>
+        {pkmData.length <= 0 ?
+          <div className="mx-auto flex flex-col items-center">
+            <h1 className=" text-darkPurple text-[35px]">Nada encontrado</h1>
+            <img src="https://i.gifer.com/Yg6z.gif" className="w-52"/>
+          </div>
+          : 
+          (<>
+            <div className="flex flex-wrap justify-center pt-2">
+              {pkmData.map((card: ICards) => <Card handleDeleteCard={openModal} name={card.name} image={card.sprites.other.dream_world.front_default} />)}
+            </div>
+            <Button name="Carregar mais" loadMoreCards={() => loadMoreCardsBtn()} />
+          </>
+          )}
 
-        <div className="flex flex-wrap justify-center pt-2">
-          {pkmData.map((card: ICards) => <Card handleDeleteCard={openModal} name={card.name} image={card.sprites.other.dream_world.front_default} />)}
-        </div>
-        <Button name="Carregar mais" loadMoreCards={() => loadMoreCardsBtn()} />
+
       </div>
 
     </main>
