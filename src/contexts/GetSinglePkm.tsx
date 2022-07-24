@@ -4,11 +4,11 @@ interface IPkmRequest {
     children: any;
   }
 
-export const PkmContextData = createContext({});
+export const SingleContextPkm = createContext({});
 
 export function PkmProvider({children}:IPkmRequest){
     const [loadPage, setLoadPage] = useState(8)
-    const [getPkmSingle, setGetPkmSingle] = useState<any>([]);
+    const [getSingleDataPkm, setGetPkmSingle] = useState<any>([]);
     const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${loadPage}`);
   
     async function getPokemons() {
@@ -31,10 +31,13 @@ export function PkmProvider({children}:IPkmRequest){
     }, []);
 
 
-  
+    function loadMoreCardsBtn() {
+      setLoadPage(loadPage + 8);
+      getPokemons();
+    }
     return (
-        <PkmContextData.Provider value={{getPkmSingle, setGetPkmSingle}}>
+        <SingleContextPkm.Provider value={{getSingleDataPkm, setGetPkmSingle, loadMoreCardsBtn}}>
             {children}
-        </PkmContextData.Provider>
+        </SingleContextPkm.Provider>
     )
 }

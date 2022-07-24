@@ -7,17 +7,26 @@ import { ICards } from '../@types/Types';
 import { Modal } from "../components/Modal/Modal";
 import {PkmContextData} from '../contexts/GetAllPkm';
 
+
 export function MainContentPage() {
 
+  const { setLoadPage, getPkm, getPokemons, loadPage } = usePkmData();
   const [openSideModalState, setOpenSideModalState] = useState(false);
 
-  const {getPkmSingle, loadMoreCardsBtn} = useContext(PkmContextData)
+  const {getPkmSingle} = useContext(PkmContextData);
+
+
 
 
   const [modal, setModal] = useState(false);
 
 
+  console.log(getPkmSingle)
 
+  function loadMoreCardsBtn() {
+    setLoadPage(loadPage + 8);
+    getPokemons();
+  }
 
   function openAndCloseSideModal() {
     setOpenSideModalState(content => !content)
