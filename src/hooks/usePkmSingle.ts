@@ -1,8 +1,7 @@
 import {useState, useEffect} from 'react';
-import { ICards } from '../@types/Types';
 
 
-export const usePkmData = (filterData?:string) => {
+export const usePkmDataSingle = ({localData}:any) => {
     const [loadPage, setLoadPage] = useState(8)
     const [getPkm, setGetPkm] = useState<any>([]);
     const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${loadPage}`);
@@ -26,12 +25,8 @@ export const usePkmData = (filterData?:string) => {
     useEffect(() => {
       getPokemons();
     }, []);
-    
-    function oi(){
-      const datafiltered = getPkm.filter((item: ICards)=> item.name === filterData)
-      setGetPkm(datafiltered)
-      console.log(datafiltered)
-    }
 
-    return {setLoadPage, getPkm, getPokemons, loadPage, setGetPkm, oi }
+  
+
+    return {setLoadPage, getPkm, getPokemons, loadPage, setGetPkm }
 }

@@ -20,7 +20,6 @@ export function MainContentPage() {
 
   function openAndCloseSideModal() {
     setOpenSideModalState(content => !content)
-    console.log(openSideModalState)
 
   }
 
@@ -28,6 +27,7 @@ export function MainContentPage() {
     setModal(!modal)
 
   }
+  
 
   return (
     <main className="w-full flex flex-col items-center ">
