@@ -4,12 +4,12 @@ interface IPkmRequest {
     children: ReactNode;
   }
 
-export const PkmContextData = createContext<any>({});
+export const SinglePkmContextData = createContext<any>({});
 
-export function PkmProvider({children}:IPkmRequest){
+export function PkmSingleProvider({children}:IPkmRequest){
     const [loadPage, setLoadPage] = useState(8)
-    const [pkmData, setPkmData] = useState<any>([]);
-    const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${loadPage}`);
+    const [singlePkmData, setSinglePkmData] = useState<any>([]);
+    const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=240`);
   
     async function getPokemons() {
       const response = await fetch(loadMore);
@@ -20,7 +20,7 @@ export function PkmProvider({children}:IPkmRequest){
         result.forEach(async (pokemon: any) => {
           const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
           const data = await response.json();
-          setPkmData((currentList: any) => [...currentList, data]);
+          setSinglePkmData((currentList: any) => [...currentList, data]);
         });
       }
       searchPokemon(data.results);
@@ -30,16 +30,11 @@ export function PkmProvider({children}:IPkmRequest){
       getPokemons();
     }, []);
 
-    function loadMoreCardsBtn() {
-      setLoadPage(loadPage + 8);
-      getPokemons();
-    }
-
 
   
     return (
-        <PkmContextData.Provider value={{pkmData, setPkmData, loadMoreCardsBtn}}>
+        <SinglePkmContextData.Provider value={{singlePkmData}}>
             {children}
-        </PkmContextData.Provider>
+        </SinglePkmContextData.Provider>
     )
 }
