@@ -27,11 +27,11 @@ export const usePkmData = (filterData?:string) => {
       getPokemons();
     }, []);
     
-    function oi(){
+    function filteredDataPkm(){
       const datafiltered = getPkm.filter((item: ICards)=> item.name === filterData)
       setGetPkm(datafiltered)
       console.log(datafiltered)
     }
 
-    return {setLoadPage, getPkm, getPokemons, loadPage, setGetPkm, oi }
+    return {setLoadPage, getPkm, getPokemons, loadPage, setGetPkm, filteredDataPkm }
 }

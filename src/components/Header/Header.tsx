@@ -10,7 +10,7 @@ import { ICards } from '../../@types/Types';
 
 export function Header() {
     const [dataHeader, setDataHeader] = useState('');
-    const { getPkm, setGetPkm, oi } = usePkmData(dataHeader);
+    const { getPkm, setGetPkm, filteredDataPkm } = usePkmData(dataHeader);
 
 
     function saveDataHeaderInLocalStorage(){
@@ -33,7 +33,7 @@ export function Header() {
                     value={dataHeader} 
                     onChange={(e)=>setDataHeader(e.target.value)}
                     />
-                    <button className=" outline-none bg-white rounded-r-md" onClick={oi}>
+                    <button className=" outline-none bg-white rounded-r-md" onClick={filteredDataPkm}>
                         <img src={bloom} alt="search-btn" className="pr-3"/>
                     </button>
                 </div>
