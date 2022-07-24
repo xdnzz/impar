@@ -1,8 +1,10 @@
+import {ReactNode} from 'react';
+
 export interface ICards {
     name?: string;
     url?: string;
     image? : string;
-    sprites?: any
+    sprites?: any;
     handleDeleteCard: ()=>void;
 }
 

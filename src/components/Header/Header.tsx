@@ -4,21 +4,15 @@ import bloom from '../../assets/lupa.svg';
 import {useState, useContext} from 'react';
 import {PkmContextData} from '../../contexts/GetAllPkm';
 import { ICards } from '../../@types/Types';
-import {SingleContextPkm} from '../../contexts/GetSinglePkm';
 
 
 export function Header() {
     const [dataHeader, setDataHeader] = useState('');
+    const {pkmData, setPkmData} = useContext(PkmContextData);
 
-    const {getPkmSingle, setGetPkmSingle} = useContext(PkmContextData);
-
-    const {getSingleDataPkm} = useContext(SingleContextPkm);
-
-
-   
     function saveDataHeaderInLocalStorage(){
-        const data = getPkmSingle.filter((item:ICards) => item.name === dataHeader)
-        setGetPkmSingle(data)
+        const data = pkmData.filter((item:ICards) => item.name === dataHeader)
+        setPkmData(data)
         
     }
 

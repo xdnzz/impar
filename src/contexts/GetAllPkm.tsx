@@ -1,14 +1,14 @@
-import {useState, createContext, useEffect} from 'react';
+import {useState,ReactNode, createContext, useEffect} from 'react';
 
 interface IPkmRequest {
-    children: any;
+    children: ReactNode;
   }
 
-export const PkmContextData = createContext({});
+export const PkmContextData = createContext<any>({});
 
 export function PkmProvider({children}:IPkmRequest){
     const [loadPage, setLoadPage] = useState(8)
-    const [getPkmSingle, setGetPkmSingle] = useState<any>([]);
+    const [pkmData, setPkmData] = useState<any>([]);
     const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=${loadPage}`);
   
     async function getPokemons() {
@@ -20,7 +20,7 @@ export function PkmProvider({children}:IPkmRequest){
         result.forEach(async (pokemon: any) => {
           const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
           const data = await response.json();
-          setGetPkmSingle((currentList: any) => [...currentList, data]);
+          setPkmData((currentList: any) => [...currentList, data]);
         });
       }
       searchPokemon(data.results);
@@ -33,7 +33,7 @@ export function PkmProvider({children}:IPkmRequest){
 
   
     return (
-        <PkmContextData.Provider value={{getPkmSingle, setGetPkmSingle}}>
+        <PkmContextData.Provider value={{pkmData, setPkmData}}>
             {children}
         </PkmContextData.Provider>
     )
