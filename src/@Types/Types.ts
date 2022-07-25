@@ -1,11 +1,12 @@
 
 export interface ICards {
-    name?: string;
-    url?: string;
+    name: string;
     image? : string;
     sprites?: any;
     handleDeleteCard: ()=>void;
     id: number;
+    openModal?: ()=>void;
+    callUnderConstructionFunction: ()=>void;
 }
 
 export interface IButton {

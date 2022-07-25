@@ -4,6 +4,7 @@ import { SideModal } from '../components/SideModal/SideModal';
 import { useState, useContext } from "react";
 import { ICards } from '../@types/Types';
 import { Modal } from "../components/Modal/Modal";
+import { DeleteModal } from "../components/Modal/DeleteModal";
 import { PkmContextData } from '../contexts/GetAllPkm';
 
 
@@ -17,6 +18,9 @@ export function MainContentPage() {
 
   const [modal, setModal] = useState(false);
 
+  const [modalDelete, setModalDelete] = useState(false);
+
+
 
 
   function openAndCloseSideModal() {
@@ -28,14 +32,27 @@ export function MainContentPage() {
 
   }
 
+  function openModalDelete(){
+    setModalDelete(!modalDelete)
+  }
+
 
   return (
     <main className="w-full flex flex-col items-center ">
       <SideModal valueSideModal={openSideModalState} setValueSideModal={setOpenSideModalState} />
-      <Modal modalOpenState={modal} callModalOpenFunction={openModal} />
+
+
+
+      <Modal modalOpenState={modal} callModalOpenFunction={openModal} callUnderConstructionFunction={openModalDelete} />
+
+      <DeleteModal modalOpenState={modalDelete} callModalOpenFunction={openModalDelete} />
+
+
+
+
       <div className="w-[1050px] py-7 flex flex-col">
         <div className="flex space-x-[600px]">
-          <span className="text-darkPurple text-[32px]">
+          <span className="text-darkPurple text-[32px]" onClick={openModalDelete}>
             Resultado de busca
           </span>
           <Button name="Novo Card" loadMoreCards={() => openAndCloseSideModal()} />
@@ -48,7 +65,7 @@ export function MainContentPage() {
           :
           (<>
             <div className="flex flex-wrap justify-center pt-2">
-              {pkmData.map((card: ICards) => <Card id={card.id} handleDeleteCard={openModal} name={card.name} image={card.sprites.other.dream_world.front_default} />)}
+              {pkmData.map((card: ICards) => <Card callUnderConstructionFunction={openModalDelete} id={card.id} handleDeleteCard={openModal} name={card.name} image={card.sprites.other.dream_world.front_default} />)}
             </div>
             <Button name="Carregar mais" loadMoreCards={() => loadMoreCardsBtn()} hidden={pkmData.length === 1 ? 'hidden': ''}/>
           </>

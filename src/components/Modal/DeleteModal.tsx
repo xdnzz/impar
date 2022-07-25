@@ -6,12 +6,11 @@ import { XIcon } from '@heroicons/react/outline';
 interface IModal {
   modalOpenState: boolean;
   callModalOpenFunction: () => void;
-  callUnderConstructionFunction: () => void;
 
 }
 
 
-export function Modal({ modalOpenState, callModalOpenFunction, callUnderConstructionFunction }: IModal) {
+export function DeleteModal({ modalOpenState, callModalOpenFunction }: IModal) {
   let [isOpen, setIsOpen] = useState(true)
 
   function closeModal() {
@@ -20,8 +19,6 @@ export function Modal({ modalOpenState, callModalOpenFunction, callUnderConstruc
 
   return (
     <>
-
-
       <Transition appear show={modalOpenState} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -53,19 +50,15 @@ export function Modal({ modalOpenState, callModalOpenFunction, callUnderConstruc
                     className="text-lg font-medium leading-6 text-gray-900 "
                   >
                   </Dialog.Title>
-                  <div className=" w-[438px] h-[434px] bg-white mt-10 flex items-center justify-center flex-col">
-                    <div className="w-44 h-44 rounded-[100%] mt-5  bg-bgLightPink border-[6px] flex flex-col justify-center items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-[100px] w-[100px] text-btnError" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
+                  <div className=" w-[438px] h-[284px] bg-white mt-10 flex items-center justify-center flex-col rounded-md">
+                    <div className="w-44 h-44 mt-5  flex flex-col justify-center items-center">
+                      <img src="https://pa1.narvii.com/6849/a24733a2eb676de083dd5851b44483cb79f9fc55_hq.gif"/>
                     </div>
-                    <span className="text-3xl font-medium text-btnError mt-5">Excluir</span>
-                    <span>Certeza que deseja excluir?</span>
-                    <div className="h-[1px] bg-slate-200 w-72 my-2 mx-auto my-5" />
-                    <div>
-                      <button className="text-white bg-btnError py-2 px-9 rounded rounded-md m-3" onClick={callUnderConstructionFunction}>Excluir</button>
-                      <button className="text-btnError bg-white border-btnError border py-2 px-9 rounded rounded-md m-3">Cancelar</button>
-                    </div>
+                <div className="flex items-center justify-center mb-3">
+                    <span className="text-center text-xl">
+                        As funcionalidades ainda estão em desenvolvimento. <br/> Obrigado pela compreenção!
+                    </span>
+                </div>
                   </div>
 
                   <div className="mt-4">
