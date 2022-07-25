@@ -2,9 +2,9 @@ import trash from '../../assets/trash.svg';
 import edit from '../../assets/edit.svg';
 import {ICards} from '../../@types/Types';
 
-export function Card({name, image, handleDeleteCard}: ICards) {
+export function Card({name, image, id, handleDeleteCard}: ICards) {
     return (
-        <div className="p-6">
+        <div className="p-6" key={id}>
             <div className="border rounded-t-md bg-white h-44 flex flex-col justify-center items-center shadow-md">
                 <div className="w-52 flex flex-col justify-center items-center">
                     <img src={image} className="h-20" />

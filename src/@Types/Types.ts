@@ -1,4 +1,3 @@
-import {ReactNode} from 'react';
 
 export interface ICards {
     name?: string;
@@ -6,10 +5,12 @@ export interface ICards {
     image? : string;
     sprites?: any;
     handleDeleteCard: ()=>void;
+    id: number;
 }
 
 export interface IButton {
     name?: string;
+    hidden?:string;
     loadMoreCards?: ()=> void;
 }
 
